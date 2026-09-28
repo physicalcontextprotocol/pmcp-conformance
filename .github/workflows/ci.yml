@@ -70,9 +70,23 @@ jobs:
           pip install -e .
 
       - name: Confirm the suite collects 42 tests
+        # The previous version of this guard matched '^[0-9]+' against
+        # pytest's summary line. That line is decorated with '=' on both
+        # ends -- "==== 42 tests collected in 0.12s ====" -- so the regex
+        # never matched, COLLECTED was always empty, and the guard failed
+        # on every run. It looked like a working guard; it was the only
+        # reason this job had never gone green. Match the count that
+        # pytest actually labels, and fail loudly if the line is missing
+        # so a pytest upgrade can't quietly turn it back into a no-op.
         run: |
-          COLLECTED=$(pytest --collect-only -q 2>/dev/null | tail -1 | grep -oE '^[0-9]+')
+          SUMMARY=$(pytest --collect-only -q 2>/dev/null | tail -1)
+          echo "pytest summary: ${SUMMARY}"
+          COLLECTED=$(printf '%s' "${SUMMARY}" | grep -oE '[0-9]+ tests? collected' | grep -oE '[0-9]+' | head -1)
           echo "collected: ${COLLECTED}"
+          if [ -z "${COLLECTED}" ]; then
+            echo "::error::Could not read a test count from pytest's summary line."
+            exit 1
+          fi
           if [ "${COLLECTED}" != "42" ]; then
             echo "::error::Expected 42 collected tests, got ${COLLECTED}."
             echo "A drop means tests were deleted or stopped being collected."
