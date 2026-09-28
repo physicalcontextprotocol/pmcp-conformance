@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pmcp-conformance"
+version = "0.5.0"
+description = "P-MCP conformance tests — JSON-RPC wire and protocol conformance for any P-MCP server implementation"
+readme = "README.md"
+license = {text = "Apache-2.0"}
+authors = [{name = "P-MCP Contributors"}]
+requires-python = ">=3.9"
+
+# These tests only need pytest + aiohttp + pytest-asyncio. They do NOT
+# depend on any P-MCP SDK — the mock robot server is self-contained in
+# conftest.py. The suite verifies wire behavior, so any implementation
+# under test should be launched separately and its base URL wired into
+# `mock_robot_server` (see conftest.py for the current in-process mock).
+dependencies = [
+    "pytest>=7.0",
+    "pytest-asyncio>=0.23",
+    "aiohttp>=3.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/physicalcontextprotocol/pmcp-conformance"
+Specification = "https://github.com/physicalcontextprotocol/pmcp-spec"
+
+# This project ships a test *suite*, not an importable library: every
+# top-level module here is a `test_*.py` file plus `conftest.py`, all
+# collected by pytest from the repo root. Without an explicit
+# `py-modules` list, setuptools' automatic flat-layout discovery aborts
+# the build with "Multiple top-level packages discovered in a flat-layout"
+# style errors (there is no importable package to find here at all), which
+# made `pip install -e .` — and therefore CI — fail. Declaring an empty
+# module list states the intent: install the dependencies, run the tests.
+[tool.setuptools]
+py-modules = []
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["."]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
