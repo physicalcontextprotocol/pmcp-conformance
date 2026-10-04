@@ -16,7 +16,7 @@ claim protocol compliance with `pmcp-spec` v0.5.
 - **Section 4 — Leases** (6 tests): acquire/release/re-acquire,
   double-acquire protection, expiry semantics.
 - **Section 5 — Metrics + Ping** (7 tests): required fields on
-  `pmcp/metrics`, `pmcp/ping`, and E-Stop engage/disengage semantics.
+  `pcp/metrics`, `pcp/ping`, and E-Stop engage/disengage semantics.
 - **Section 6 — Error codes** (7 tests): P-MCP error range
   (-33999..-33000), JSON-RPC 2.0 standard codes, response
   well-formedness.

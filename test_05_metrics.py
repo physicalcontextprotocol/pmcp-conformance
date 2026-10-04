@@ -1,7 +1,7 @@
 """
 P-MCP Conformance Test — Section 5: Metrics & Ping
 ====================================================
-Verifies the pmcp/metrics and pmcp/ping methods return
+Verifies the pcp/metrics and pcp/ping methods return
 well-formed responses with required fields.
 """
 from __future__ import annotations
@@ -24,12 +24,12 @@ METRICS_REQUIRED = {
 
 
 class TestMetricsAndPing:
-    """PMCP-CONF-05: Metrics and ping."""
+    """PCP-CONF-05: Metrics and ping."""
 
     @pytest.mark.asyncio
     async def test_ping_responds(self, mock_robot_server):
-        """pmcp/ping MUST return a response without error."""
-        resp = await rpc_call(mock_robot_server["base_url"], "pmcp/ping", {})
+        """pcp/ping MUST return a response without error."""
+        resp = await rpc_call(mock_robot_server["base_url"], "pcp/ping", {})
         assert "error" not in resp
         assert resp["result"] is not None
 
@@ -37,7 +37,7 @@ class TestMetricsAndPing:
     async def test_ping_response_is_recent(self, mock_robot_server):
         """Ping response timestamp MUST be within 5 seconds."""
         before = int(time.time() * 1000)
-        resp = await rpc_call(mock_robot_server["base_url"], "pmcp/ping", {})
+        resp = await rpc_call(mock_robot_server["base_url"], "pcp/ping", {})
         after = int(time.time() * 1000)
         ts = resp["result"].get("timestamp")
         if ts is not None:
@@ -45,8 +45,8 @@ class TestMetricsAndPing:
 
     @pytest.mark.asyncio
     async def test_metrics_returns_all_required_fields(self, mock_robot_server):
-        """pmcp/metrics MUST include all required metric fields."""
-        resp = await rpc_call(mock_robot_server["base_url"], "pmcp/metrics", {})
+        """pcp/metrics MUST include all required metric fields."""
+        resp = await rpc_call(mock_robot_server["base_url"], "pcp/metrics", {})
         assert "error" not in resp
         result = resp["result"]
         for field in METRICS_REQUIRED:
@@ -55,7 +55,7 @@ class TestMetricsAndPing:
     @pytest.mark.asyncio
     async def test_metrics_values_are_non_negative(self, mock_robot_server):
         """All numeric metric values MUST be non-negative."""
-        resp = await rpc_call(mock_robot_server["base_url"], "pmcp/metrics", {})
+        resp = await rpc_call(mock_robot_server["base_url"], "pcp/metrics", {})
         result = resp["result"]
         for field in METRICS_REQUIRED:
             val = result.get(field, 0)
@@ -64,12 +64,12 @@ class TestMetricsAndPing:
     @pytest.mark.asyncio
     async def test_uptime_is_positive(self, mock_robot_server):
         """uptimeSeconds MUST be > 0 after server startup."""
-        resp = await rpc_call(mock_robot_server["base_url"], "pmcp/metrics", {})
+        resp = await rpc_call(mock_robot_server["base_url"], "pcp/metrics", {})
         assert float(resp["result"]["uptimeSeconds"]) >= 0
 
 
 class TestEstop:
-    """PMCP-CONF-05b: Emergency stop."""
+    """PCP-CONF-05b: Emergency stop."""
 
     @pytest.mark.asyncio
     async def test_estop_engage(self, mock_robot_server):

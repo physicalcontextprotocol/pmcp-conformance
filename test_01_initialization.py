@@ -15,7 +15,7 @@ import aiohttp
 import pytest
 import pytest_asyncio
 
-PMCP_VERSION = "0.5"
+PCP_VERSION = "0.5"
 JSONRPC_VERSION = "2.0"
 
 
@@ -40,26 +40,26 @@ async def rpc_call(base_url: str, method: str, params: Dict[str, Any] = None, re
 # ─────────────────────────────────────────────────────────────────────────────
 
 class TestInitializationHandshake:
-    """PMCP-CONF-01: Initialization handshake."""
+    """PCP-CONF-01: Initialization handshake."""
 
     @pytest.mark.asyncio
     async def test_initialize_returns_protocol_version(self, mock_robot_server):
         """Server MUST return the negotiated protocolVersion in initialize response."""
         base = mock_robot_server["base_url"]
         resp = await rpc_call(base, "initialize", {
-            "protocolVersion": PMCP_VERSION,
+            "protocolVersion": PCP_VERSION,
             "clientInfo": {"name": "conformance-tester", "version": "1.0.0"},
         })
         assert "error" not in resp, f"Unexpected error: {resp.get('error')}"
         result = resp["result"]
         assert "protocolVersion" in result, "protocolVersion missing from initialize response"
-        assert result["protocolVersion"] == PMCP_VERSION
+        assert result["protocolVersion"] == PCP_VERSION
 
     @pytest.mark.asyncio
     async def test_initialize_includes_server_info(self, mock_robot_server):
         """Server MUST include serverInfo with name and robotId."""
         resp = await rpc_call(mock_robot_server["base_url"], "initialize", {
-            "protocolVersion": PMCP_VERSION,
+            "protocolVersion": PCP_VERSION,
         })
         result = resp["result"]
         assert "serverInfo" in result
@@ -71,7 +71,7 @@ class TestInitializationHandshake:
     async def test_initialize_includes_capabilities(self, mock_robot_server):
         """Server MUST include capabilities.actuations and capabilities.sensors."""
         resp = await rpc_call(mock_robot_server["base_url"], "initialize", {
-            "protocolVersion": PMCP_VERSION,
+            "protocolVersion": PCP_VERSION,
         })
         result = resp["result"]
         assert "capabilities" in result
@@ -82,7 +82,7 @@ class TestInitializationHandshake:
     async def test_initialize_response_is_valid_jsonrpc(self, mock_robot_server):
         """Response MUST be valid JSON-RPC 2.0."""
         resp = await rpc_call(mock_robot_server["base_url"], "initialize", {
-            "protocolVersion": PMCP_VERSION,
+            "protocolVersion": PCP_VERSION,
         })
         assert resp["jsonrpc"] == JSONRPC_VERSION
         assert "id" in resp

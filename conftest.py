@@ -206,7 +206,7 @@ class MockRobotHandler(BaseHTTPRequestHandler):
                 del LEASE_STORE[lease_id]
             result = {"released": released}
 
-        elif method == "pmcp/metrics":
+        elif method == "pcp/metrics":
             result = {
                 "actuationCount": 10,
                 "sensorReadCount": 50,
@@ -218,7 +218,7 @@ class MockRobotHandler(BaseHTTPRequestHandler):
                 "lastHeartbeatMs": int(time.time() * 1000),
             }
 
-        elif method == "pmcp/ping":
+        elif method == "pcp/ping":
             result = {"pong": True, "timestamp": int(time.time() * 1000)}
 
         elif method == "safety/estop/engage":
@@ -243,7 +243,7 @@ class MockRobotHandler(BaseHTTPRequestHandler):
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
         self.send_header("Content-Length", str(len(body)))
-        self.send_header("X-PMCP-Version", "0.5")
+        self.send_header("X-PCP-Version", "0.5")
         self.end_headers()
         self.wfile.write(body)
 

@@ -11,8 +11,8 @@ import pytest
 from conftest import rpc_call
 
 # P-MCP error code range
-PMCP_ERROR_MIN = -33999
-PMCP_ERROR_MAX = -33000
+PCP_ERROR_MIN = -33999
+PCP_ERROR_MAX = -33000
 
 # JSON-RPC 2.0 standard codes
 JSONRPC_ERROR_MIN = -32768
@@ -20,7 +20,7 @@ JSONRPC_ERROR_MAX = -32000
 
 
 class TestErrorCodes:
-    """PMCP-CONF-06: Error code compliance."""
+    """PCP-CONF-06: Error code compliance."""
 
     @pytest.mark.asyncio
     async def test_error_has_code_and_message(self, mock_robot_server):
@@ -93,7 +93,7 @@ class TestErrorCodes:
         for method, params in [
             ("initialize", {"protocolVersion": "0.5"}),
             ("actuations/list", {}),
-            ("pmcp/ping", {}),
+            ("pcp/ping", {}),
             ("nonexistent", {}),
         ]:
             resp = await rpc_call(mock_robot_server["base_url"], method, params)

@@ -13,7 +13,7 @@ from conftest import rpc_call
 
 
 class TestLeaseLifecycle:
-    """PMCP-CONF-04: Zone lease lifecycle."""
+    """PCP-CONF-04: Zone lease lifecycle."""
 
     @pytest.mark.asyncio
     async def test_acquire_lease_success(self, mock_robot_server):

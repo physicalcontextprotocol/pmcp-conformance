@@ -16,7 +16,7 @@ async def rpc_call(base_url, method, params=None, req_id=1):
 
 
 class TestActuationLifecycle:
-    """PMCP-CONF-02: Actuation lifecycle."""
+    """PCP-CONF-02: Actuation lifecycle."""
 
     @pytest.mark.asyncio
     async def test_actuations_list(self, mock_robot_server):

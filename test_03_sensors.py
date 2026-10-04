@@ -13,7 +13,7 @@ from conftest import rpc_call
 
 
 class TestSensorReading:
-    """PMCP-CONF-03: Sensor reading."""
+    """PCP-CONF-03: Sensor reading."""
 
     @pytest.mark.asyncio
     async def test_sensors_list(self, mock_robot_server):
