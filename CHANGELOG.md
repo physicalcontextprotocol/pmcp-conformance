@@ -4,11 +4,17 @@ All notable changes to the P-MCP conformance suite. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 This suite is versioned in lockstep with the protocol version it tests.
-A conformance suite for v0.5 must not be published as v0.6.
+A conformance suite for v0.5 must not be published as v0.6 — which is also
+why it is not 1.0.0. An earlier revision of this file headed the first
+public release `[1.0.0]`; that was the version scheme it was meant to
+replace, not the version of the suite, and it contradicted both this
+preamble and the `0.5.0` in `pyproject.toml`.
 
-## [1.0.0] — 2026-09-28
+## [0.5.0] — 2026-09-28
 
-First tagged public release. 42 tests, all passing.
+First tagged public release: 42 tests across six sections — initialization,
+actuations, sensors, leases, metrics/ping, and error codes — written against
+protocol v0.5.
 
 ### Fixed
 
@@ -41,9 +47,3 @@ First tagged public release. 42 tests, all passing.
 - The per-method JSON-RPC schema registry is still missing from
   `pmcp-spec/schema/`, so response shapes are asserted inline in the
   tests rather than generated from the schema.
-
-## [0.5.0]
-
-Suite written against protocol v0.5: 42 tests across six sections —
-initialization, actuations, sensors, leases, metrics/ping, and error
-codes.
