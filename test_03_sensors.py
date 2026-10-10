@@ -1,5 +1,5 @@
 """
-P-MCP Conformance Test — Section 3: Sensor Reading
+PCP Conformance Test — Section 3: Sensor Reading
 ====================================================
 Verifies sensors/list, sensors/read, sensor response schema,
 and handling of unknown sensor names.

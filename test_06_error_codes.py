@@ -1,7 +1,7 @@
 """
-P-MCP Conformance Test — Section 6: Error Codes
+PCP Conformance Test — Section 6: Error Codes
 =================================================
-Verifies that all P-MCP-specific error codes are correctly numeric
+Verifies that all PCP-specific error codes are correctly numeric
 and that the error structure conforms to JSON-RPC 2.0.
 """
 from __future__ import annotations
@@ -10,7 +10,7 @@ import pytest
 
 from conftest import rpc_call
 
-# P-MCP error code range
+# PCP error code range
 PCP_ERROR_MIN = -33999
 PCP_ERROR_MAX = -33000
 

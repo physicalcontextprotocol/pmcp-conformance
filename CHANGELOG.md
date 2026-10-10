@@ -1,6 +1,6 @@
-# Changelog — pmcp-conformance
+# Changelog — pcp-conformance
 
-All notable changes to the P-MCP conformance suite. The format follows
+All notable changes to the PCP conformance suite. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 This suite is versioned in lockstep with the protocol version it tests.
@@ -45,5 +45,5 @@ protocol v0.5.
   URL configurable and defining a driver contract for external
   implementations is the highest-value open work here.
 - The per-method JSON-RPC schema registry is still missing from
-  `pmcp-spec/schema/`, so response shapes are asserted inline in the
+  `pcp-spec/schema/`, so response shapes are asserted inline in the
   tests rather than generated from the schema.

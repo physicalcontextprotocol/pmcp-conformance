@@ -1,5 +1,5 @@
 """
-P-MCP Conformance Test — Section 2: Actuation Lifecycle
+PCP Conformance Test — Section 2: Actuation Lifecycle
 =========================================================
 Verifies actuations/list, actuations/execute, batch actuation,
 and correct error handling for unknown actuations.

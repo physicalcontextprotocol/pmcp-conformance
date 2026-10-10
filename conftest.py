@@ -1,5 +1,5 @@
 """
-P-MCP Conformance Test Suite — conftest.py
+PCP Conformance Test Suite — conftest.py
 ==========================================
 Shared fixtures for conformance tests.
 """
@@ -29,7 +29,7 @@ LEASE_COUNTER = 0
 
 
 class MockRobotHandler(BaseHTTPRequestHandler):
-    """Minimal P-MCP server for conformance testing."""
+    """Minimal PCP server for conformance testing."""
 
     protocol_version = "HTTP/1.1"
 
@@ -257,7 +257,7 @@ def _find_free_port() -> int:
 
 @pytest.fixture(scope="session")
 def mock_robot_server():
-    """Start a mock P-MCP robot server for the test session."""
+    """Start a mock PCP robot server for the test session."""
     port = _find_free_port()
     server = HTTPServer(("127.0.0.1", port), MockRobotHandler)
     thread = threading.Thread(target=server.serve_forever, daemon=True)

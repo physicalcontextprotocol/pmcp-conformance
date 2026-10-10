@@ -1,5 +1,5 @@
 """
-P-MCP Conformance Test — Section 4: Lease Acquire/Release
+PCP Conformance Test — Section 4: Lease Acquire/Release
 ==========================================================
 Verifies exclusive zone lease semantics: acquire, check, release,
 expiry, and double-acquire protection.

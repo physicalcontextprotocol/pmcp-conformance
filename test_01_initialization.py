@@ -1,5 +1,5 @@
 """
-P-MCP Conformance Test — Section 1: Initialization Handshake
+PCP Conformance Test — Section 1: Initialization Handshake
 ==============================================================
 Verifies that a compliant robot server correctly handles the initialize
 handshake as specified in Section 3.1 of the protocol spec.

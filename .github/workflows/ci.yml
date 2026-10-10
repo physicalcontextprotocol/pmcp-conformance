@@ -1,7 +1,7 @@
-name: pmcp-conformance CI
+name: pcp-conformance CI
 
 # The conformance suite is the thing that decides whether an
-# implementation is allowed to call itself P-MCP-compliant, so every
+# implementation is allowed to call itself PCP-compliant, so every
 # check here is blocking. A failure means a test that passes for the
 # wrong reason, which is worse than a missing test.
 
@@ -50,7 +50,7 @@ jobs:
   # Guards against the single most damaging regression in a conformance
   # suite: a test that stops exercising anything and starts passing
   # vacuously. This is not hypothetical — a translation bug in the
-  # pmcp-spec model-checking tooling once made an invariant check pass
+  # pcp-spec model-checking tooling once made an invariant check pass
   # for the wrong reason, which is why that repository now ships
   # deliberately mutated models. Here, the equivalent smoke test is to
   # confirm the suite still collects exactly the tests it claims to.
@@ -102,7 +102,7 @@ jobs:
     steps:
       - name: Report status
         run: |
-          echo "## pmcp-conformance CI Summary" >> "$GITHUB_STEP_SUMMARY"
+          echo "## pcp-conformance CI Summary" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| Job | Result |" >> "$GITHUB_STEP_SUMMARY"
           echo "|-----|--------|" >> "$GITHUB_STEP_SUMMARY"

@@ -1,7 +1,7 @@
-# Contributing to pmcp-conformance
+# Contributing to pcp-conformance
 
 The conformance suite: 42 tests that an implementation must pass to call
-itself P-MCP-compliant.
+itself PCP-compliant.
 
 The organization-wide contributor policy lives in
 [`physicalcontextprotocol/.github`](https://github.com/physicalcontextprotocol/.github/blob/main/CONTRIBUTING.md).

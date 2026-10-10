@@ -1,5 +1,5 @@
 """
-P-MCP Conformance Test — Section 5: Metrics & Ping
+PCP Conformance Test — Section 5: Metrics & Ping
 ====================================================
 Verifies the pcp/metrics and pcp/ping methods return
 well-formed responses with required fields.

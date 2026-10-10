@@ -1,8 +1,8 @@
-# pmcp-conformance
+# pcp-conformance
 
-Conformance tests for any P-MCP server implementation (Python, TypeScript,
+Conformance tests for any PCP server implementation (Python, TypeScript,
 Rust, or third-party). This is the suite an implementation must pass to
-claim protocol compliance with `pmcp-spec` v0.5.
+claim protocol compliance with `pcp-spec` v0.5.
 
 ## What it verifies
 
@@ -17,7 +17,7 @@ claim protocol compliance with `pmcp-spec` v0.5.
   double-acquire protection, expiry semantics.
 - **Section 5 — Metrics + Ping** (7 tests): required fields on
   `pcp/metrics`, `pcp/ping`, and E-Stop engage/disengage semantics.
-- **Section 6 — Error codes** (7 tests): P-MCP error range
+- **Section 6 — Error codes** (7 tests): PCP error range
   (-33999..-33000), JSON-RPC 2.0 standard codes, response
   well-formedness.
 
